@@ -7,8 +7,8 @@ import { Pool } from 'pg';
 const pool = new Pool({
     host: 'localhost',
     user: 'postgres',
-    database: '<your-db>',
-    password: '<your-password>',
+    database: 'blog',
+    password: 'win7&',
     port: 5432,
 })
 
@@ -27,10 +27,10 @@ export const { auth, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
       async authorize(credentials) {
-        const parsedCredentials = z
-          .object({ email_field: z.string().email(), password_field: z.string().min(6) })
+        const parsedCredentials = z.object({ email_field: z.string().email(), password_field: z.string().min(5) })
           .safeParse(credentials);
- 
+        console.log({ credentials} )
+        console.log(parsedCredentials)
         if (parsedCredentials.success) {
           const { email_field, password_field } = parsedCredentials.data;
           const user = await getUser(email_field);
