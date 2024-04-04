@@ -1,39 +1,18 @@
-import Link from "next/link";
-import Post from "@/app/ui/Post";
+import Post from "@/app/ui/post";
+import { getAllPosts } from "./lib/data";
 
-export default function Page() {
-  const arr3 = [1, 2, 3];
+export default async function Page() {
+  const posts = await getAllPosts();
 
   return (
     <>
-      {/* header */}
-      <div className="container m-auto">
-        <header className="pt-11">
-          <nav className="flex justify-between">
-            <a href="/">Logo</a>
-            <ul className="flex justify-end gap-20">
-              <li>
-                <a href="#">Main</a>
-              </li>
-              <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Contacts</a>
-              </li>
-            </ul>
-          </nav>
-        </header>
-      </div>
-      {/* Main section */}
-      <main>
-        <div className="container xl:border-x border-neutral-600 m-auto min-h-72">
-          {/* wrapper for posts */}
-          <ul className="text-center">{
-            arr3.map((_i, i) => <li key={i}><Post /></li>)
-          }</ul>
-        </div>
-      </main>
+      <ul className="text-center">
+        {posts.map((post, index) => (
+          <li key={index}>
+            <Post postObj={post} isMinimized={true} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }

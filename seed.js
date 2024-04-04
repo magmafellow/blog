@@ -25,7 +25,7 @@ async function createTables() {
     database: "blog",
     port: 5432,
     user: "postgres",
-    password: "win7&",
+    password: "mac7&",
     host: "localhost",
   });
 
@@ -47,7 +47,7 @@ async function fillPosts() {
     database: "blog",
     port: 5432,
     user: "postgres",
-    password: "win7&",
+    password: "mac7&",
     host: "localhost",
   });
 
